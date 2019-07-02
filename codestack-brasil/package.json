@@ -1,0 +1,44 @@
+{
+  "name": "codestack-brasil",
+  "description": "A Gatsby blog develop in the series 'Creating a blog with React and Gatsby'",
+  "version": "1.0.0",
+  "author": "João Pedro Schmitz <jpedroschmitz@hotmail.com> (https://www.codestack-brasil/)",
+  "license": "MIT",
+  "main": "n/a",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpedroschmitz/codestack-brasil.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jpedroschmitz/codestack-brasil/issues"
+  },
+  "scripts": {
+    "develop": "gatsby develop",
+    "dev": "npm run develop",
+    "serve": "gatsby serve",
+    "build": "gatsby build"
+  },
+  "keywords": [
+    "gatsby",
+    "javascript",
+    "react",
+    "blog"
+  ],
+  "dependencies": {
+    "gatsby": "^2.1.13",
+    "gatsby-plugin-catch-links": "^2.0.11",
+    "gatsby-plugin-feed": "^2.0.15",
+    "gatsby-plugin-google-analytics": "^2.0.17",
+    "gatsby-plugin-manifest": "^2.0.24",
+    "gatsby-plugin-offline": "^2.0.25",
+    "gatsby-plugin-react-helmet": "^3.0.9",
+    "gatsby-plugin-sitemap": "^2.0.10",
+    "gatsby-source-filesystem": "^2.0.21",
+    "gatsby-transformer-remark": "^2.2.5",
+    "lodash": "^4.17.11",
+    "minireset.css": "^0.0.4",
+    "react": "^16.8.2",
+    "react-dom": "^16.8.2",
+    "react-helmet": "^5.2.0"
+  }
+}

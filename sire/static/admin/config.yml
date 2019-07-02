@@ -1,0 +1,382 @@
+#################################
+#
+# Netlify-cms config file
+#
+# Doc:
+# https://www.netlifycms.org/docs/configuration-options/
+#
+#################################
+
+# General options
+backend:
+  # local backend
+  # WARN: Will not save data, it just for develop fields
+  # name: test-repo
+
+  # Netlify as backend (recommanded)
+  name: git-gateway
+  accept_roles:
+    - admin
+    - editor
+
+media_folder: static/uploads
+public_folder: uploads
+
+# Others Options
+# publish_mode: editorial_workflow
+# site_url: https://your-site.com
+# display_url: https://your-site.com
+# logo_url: https://your-site.com/images/logo.svg
+# show_preview_links: false
+
+slug:
+  encoding: "ascii"
+  clean_accents: true
+  sanitize_replacement: "_"
+
+# Collections are eq as CPTs in WordPress
+collections:
+  - name: pages
+    label: Pages
+    delete: false
+    files:
+      # Page: Home
+      - file: data/static-pages/index.md
+        name: index
+        label: "Page d'accueil"
+        fields:
+          - {
+              name: templateKey,
+              label: Template Key,
+              widget: hidden,
+              default: home-page,
+          }
+          - {
+              name: title,
+              label: Titre,
+              widget: string,
+              hint: 'Utilisé pour le SEO',
+          }
+          - {
+            name: excerpt,
+            label: Extrait,
+            widget: text,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: headerSlider,
+            label: "Slider principal",
+            widget: list,
+            fields: [
+              {name: image, label: Image, widget: image},
+              {name: title, label: Titre, widget: string}
+            ],
+            required: false
+          }
+          - {
+            name: presentationTitle,
+            label: "Titre section présentation",
+            widget: string,
+          }
+          - {
+            name: presentationBody,
+            label: "Texte de présentation",
+            widget: text,
+          }
+          - {
+            name: presentationSlider,
+            label: "Slider de présentation",
+            widget: list,
+            fields: [
+              {name: image, label: Image, widget: image},
+              {name: title, label: Titre, widget: string}
+            ],
+            required: false
+
+          }
+          - {
+            name: processTitle,
+            label: "Titre section processus",
+            widget: string,
+          }
+          - {
+            name: process,
+            label: "Étapes du processus",
+            widget: list,
+            fields: [{name: step, label: Étapes, widget: string}]
+          }
+          - {
+            name: materialTitle,
+            label: "Titre section matériaux",
+            widget: string,
+          }
+          - {
+            name: materials,
+            label: "Matériaux",
+            widget: list,
+            fields: [
+              {name: title, label: Title, widget: string},
+              {name: content, label: Contenu, widget: text},
+              {name: image, label: Image, widget: image}
+            ],
+            required: false
+          }
+          - {
+            name: portfolioTitle,
+            label: "Titre section portfolio",
+            widget: string,
+          }
+          - {
+            name: portfolioBody,
+            label: "Texte de présentation",
+            widget: text,
+          }
+          - {
+            name: portfolioProject,
+            label: "Projet en avant",
+            widget: relation,
+            collection: projects,
+            searchFields: ['title', 'business'],
+            valueField: 'title'
+          }
+      # Page: About ( à propos )
+      - file: data/static-pages/about.md
+        name: about
+        label: "À propos"
+        fields:
+          - {
+            name: templateKey,
+            label: Template Key,
+            widget: hidden,
+            default: about-page
+          }
+          - {
+            name: title,
+            label: Titre,
+            widget: string,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: excerpt,
+            label: Extrait,
+            widget: text,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: cover,
+            label: Cover,
+            widget: image
+          }
+          - {
+            name: ecoTitle,
+            label: "Titre de la section éco.",
+            widget: string
+          }
+          - {
+            name: ecoBody,
+            label: "Description de la section éco.",
+            widget: text
+          }
+          - {
+            name: ecoItems,
+            label: "Points de la section éco.",
+            widget: list,
+            fields: [
+              {name: name, label: Titre, widget: string},
+              {name: content, label: Texte, widget: text}
+            ]
+          }
+          - {
+            name: partnerTitle,
+            label: "Titre de la section partenaires.",
+            widget: string
+          }
+          - {
+            name: partners,
+            label: "Points de la section partenaires.",
+            widget: list,
+            fields: [
+              {name: logo, label: Logo, widget: image, hint: "Considérez le format .png pour la transparence."},
+              {name: url, label: url, widget: string}
+            ]
+          }
+          - {
+            name: teamTitle,
+            label: "Titre de la section Team.",
+            widget: string
+          }
+          - {
+            name: team,
+            label: "Membres de la Team.",
+            widget: list,
+            fields: [
+              {name: photo, label: Photo, widget: image},
+              {name: name, label: Nom, widget: string},
+              {name: content, label: Description, widget: text}
+            ]
+          }
+      # Page: Portfolio
+      - file: data/static-pages/portfolio.md
+        name: portfolio
+        label: "Portfolio"
+        fields:
+          - {
+            name: templateKey,
+            label: Template Key,
+            widget: hidden,
+            default: portfolio-page
+          }
+          - {
+            name: title,
+            label: Titre,
+            widget: string,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: excerpt,
+            label: Extrait,
+            widget: text,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: cover,
+            label: Cover,
+            widget: image
+          }
+          - {
+            name: subTitle,
+            label: "Sous titre",
+            widget: string
+          }
+          - {
+            name: presentation,
+            label: "Présentation du portfolio",
+            widget: text
+          }
+          - {
+            name: portfolioProjects,
+            label: "Projets à afficher",
+            widget: relation,
+            collection: projects,
+            searchFields: ['title', 'business'],
+            valueField: 'title',
+            multiple: true
+          }
+      # Page: Contact
+      - file: data/static-pages/contact.md
+        name: contact
+        label: "Contact"
+        fields:
+          - {
+            name: templateKey,
+            label: Template Key,
+            widget: hidden,
+            default: contact-page
+          }
+          - {
+            name: title,
+            label: Titre,
+            widget: string,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: excerpt,
+            label: Extrait,
+            widget: text,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: cover,
+            label: Cover,
+            widget: image
+          }
+          - {
+              name: content,
+              label: "Message avant le formulaire",
+              widget: text
+          }
+      # Page: Mentions legals
+      - file: data/static-pages/mentions-legals.md
+        name: mentions-legals
+        label: "Mentions légales"
+        fields:
+          - {
+            name: templateKey,
+            label: Template Key,
+            widget: hidden,
+            default: mentions-legales-page
+          }
+          - {
+            name: title,
+            label: Titre,
+            widget: string,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: excerpt,
+            label: Extrait,
+            widget: text,
+            hint: 'Utilisé pour le SEO'
+          }
+          - {
+            name: cover,
+            label: Cover,
+            widget: image
+          }
+          - {
+              name: body,
+              label: "Contenu",
+              widget: markdown
+          }
+  # Portfolio projects collection
+  - name: projects
+    label: Projets
+    folder: data/portfolio
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - {
+        name: templateKey,
+        label: Template Key,
+        widget: hidden,
+        default: projects
+      }
+      - {
+        name: title,
+        label: Titre,
+        widget: string,
+        hint: 'Utilisé pour le SEO'
+      }
+      - {
+        name: excerpt,
+        label: Extrait,
+        widget: text,
+        hint: 'Utilisé pour le SEO'
+      }
+      - {
+        name: business,
+        label: "L'entreprise",
+        widget: string
+      }
+      - {
+        name: date,
+        label: "Date du projet",
+        widget: date
+      }
+      - {
+        name: thumbnail,
+        label: "Image à la une",
+        widget: image
+      }
+      - {
+        name: images,
+        label: "Autres images",
+        widget: list,
+        field: {name: image, label: image, widget: image},
+        required: false
+      }
+      - {
+        name: body,
+        label: "Texte de présentation",
+        widget: text
+      }

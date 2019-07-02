@@ -1,0 +1,16 @@
+# /node_modules/* and /bower_components/* in the project root are ignored by default
+
+# Ignore output
+.cache
+generators
+public
+
+# Ignore data .md & assets
+data
+static
+
+# Ignore declarations
+*.d.ts
+
+# Normalize
+src/utils/normalize.js
